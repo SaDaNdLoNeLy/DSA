@@ -50,6 +50,31 @@ void insertBefore(node **head, node *cur, int value){
     }
 }
 
+node *deleteNode(node *head, node *del){
+    if (head == del){
+        head = del->next;
+        free(del);
+    }
+    else{
+        node *prev = head;
+        while (prev->next != del)
+            prev = prev->next;
+        prev->next = del->next;
+        free(del);
+    }
+    return head;
+}
+
+node *deleteList(node *head){
+    node *del = head;
+    while (del != NULL){
+        head = head->next;
+        free(del);
+        del = head;
+    }
+    return head;
+}
+
 void printList(node *head){
     node *cur;
     printf("The linked-list: ");
@@ -69,16 +94,17 @@ node *searchData(node *head, int value){
 }
 
 int main(){
-    int len, n;
-    printf("Enter the length of list: ");
-    scanf("%d%*c", &len);
-    for (int i=0; i<len; i++){
-        printf("Enter the int: ");
-        scanf("%d%*c", &n);
-        head = insertHead(head, n);
-    }
-    printList(head);
-    insertBefore(&head, head, 6);
-    printList(head);
+    node *node1 = allocateData(1);
+    node *node2 = allocateData(2);
+    node *node3 = allocateData(3);
+    node *node4 = allocateData(4);
+
+    node1->next = node2;
+    node2->next = node3;
+    node3->next = node4;
+
+    node1 = deleteList(node1);
+
+    printList(node1);
 }
 
