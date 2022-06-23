@@ -26,6 +26,8 @@ void deleteNode(duo_list *delete, duo_list **head, duo_list **tail){
     free(delete);
 }
 
+/*lollol */
+
 void printList(duo_list *head){
     duo_list *cur;
     printf("The linked-list: ");

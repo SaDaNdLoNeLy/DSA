@@ -19,7 +19,6 @@ node *makeNode(char *name){
 }
 
 
-
 node *find(node *root, char *name){
     if (root == NULL)
         return NULL;
@@ -105,31 +104,6 @@ void printProcess(node *root){
         printProcess(child);
         child = child->right_sibling;
     }
-}
-
-node *readFile(FILE *f){
-    node *root=NULL;
-    int count=0;
-    char p_name[256], c_name[256];
-    do{
-        fscanf(f, "%s", p_name);
-        if (strcmp(p_name, "$$")==0)
-            break;
-        node *p = find(root, p_name);
-        if (p == NULL){
-            p=makeNode(p_name);
-            if (count == 0)
-                root = p;
-        }
-        do{
-            fscanf(f, "%s", c_name);
-            if (strcmp(c_name, "$")==0)
-                break;
-            addChild(p_name, c_name, root);
-        } while(1);
-        count++;
-    } while(1);
-    return root;
 }
 
 void storeProcess(node *root, FILE *file){
