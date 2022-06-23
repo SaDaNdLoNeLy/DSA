@@ -106,5 +106,7 @@ int main(){
     node1 = deleteList(node1);
 
     printList(node1);
+
+    
 }
 
