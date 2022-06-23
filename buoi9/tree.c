@@ -1,8 +1,5 @@
 #include <stdio.h>
-<<<<<<< HEAD
-=======
 #include <stdlib.h>
->>>>>>> 46e24a93a12cc65b12bb418e2c871964dd891c0f
 #include <string.h>
 
 typedef struct node{
@@ -21,38 +18,6 @@ node *makeNode(char *name){
     return new_node;
 }
 
-<<<<<<< HEAD
-void readFile(FILE *f, node *r){
-    char p_name[256], c_name[256];
-    int count=0;
-    do{
-        fscanf(f, "%s", p_name);
-        node *r = makeNode(p_name);
-        do{
-            count = 1;
-            fscanf(f, "%s", c_name);
-            node *c;
-            if (c_name=="$")
-                break;
-            if (count == 1){
-                c = makeNode(c_name);
-                r->left_most_child = c;
-                count++;
-            }
-            else{
-                c->right_sibling = makeNode(c_name);
-                count++;
-            }
-        } while (1);
-        if (c_name=="$")
-            continue;
-        if (p_name=="$$")
-            break;
-    } while(1); 
-}
-=======
-
->>>>>>> 46e24a93a12cc65b12bb418e2c871964dd891c0f
 
 node *find(node *root, char *name){
     if (root == NULL)
@@ -97,20 +62,11 @@ void findChildrenProcess(){
     printf("\n");
 }
 
-<<<<<<< HEAD
-void addChild(char *p_name, char *c_name){
-=======
 void addChild(char *p_name, char *c_name, node *root){
->>>>>>> 46e24a93a12cc65b12bb418e2c871964dd891c0f
     node *p = find(root, p_name);
     if (p == NULL)
         printf("Not found %s\n", p_name);
     node *c = p->left_most_child;
-<<<<<<< HEAD
-    while (c->right_sibling != NULL)
-        c = c->right_sibling;
-    c->right_sibling = makeNode(c_name);
-=======
 
     if (c==NULL){
         c = makeNode(c_name);
@@ -121,7 +77,6 @@ void addChild(char *p_name, char *c_name, node *root){
         c = c->right_sibling;
     c->right_sibling = makeNode(c_name);
     }
->>>>>>> 46e24a93a12cc65b12bb418e2c871964dd891c0f
 }
 
 void addChildProcess(){
@@ -130,11 +85,7 @@ void addChildProcess(){
     scanf("%[^\n]%*c", p_name);
     printf("Enter child node for adding: ");
     scanf("%[^\n]%*c", c_name);
-<<<<<<< HEAD
-    addChild(p_name, c_name);
-=======
     addChild(p_name, c_name, root);
->>>>>>> 46e24a93a12cc65b12bb418e2c871964dd891c0f
 }
 
 void printProcess(node *root){
@@ -155,34 +106,6 @@ void printProcess(node *root){
     }
 }
 
-<<<<<<< HEAD
-=======
-node *readFile(FILE *f){
-    node *root=NULL;
-    int count=0;
-    char p_name[256], c_name[256];
-    do{
-        fscanf(f, "%s", p_name);
-        if (strcmp(p_name, "$$")==0)
-            break;
-        node *p = find(root, p_name);
-        if (p == NULL){
-            p=makeNode(p_name);
-            if (count == 0)
-                root = p;
-        }
-        do{
-            fscanf(f, "%s", c_name);
-            if (strcmp(c_name, "$")==0)
-                break;
-            addChild(p_name, c_name, root);
-        } while(1);
-        count++;
-    } while(1);
-    return root;
-}
-
->>>>>>> 46e24a93a12cc65b12bb418e2c871964dd891c0f
 void storeProcess(node *root, FILE *file){
     if (root == NULL)
         return;
@@ -229,14 +152,6 @@ int countNode(node *r){
 }
 
 int main(){
-<<<<<<< HEAD
-    int choice;
-    do{
-        printf("%-20s", "MENU");
-        printf()
-
-    } while()
-=======
     FILE *f = fopen("file.txt", "r");
     FILE *store = fopen("store.txt", "w");
     node *root = readFile(f);
@@ -245,5 +160,4 @@ int main(){
     storeProcess(root, store);
     fclose(f);
     fclose(store);
->>>>>>> 46e24a93a12cc65b12bb418e2c871964dd891c0f
 }
