@@ -61,3 +61,59 @@ void printTree(node *root){
     printTree(root->left_child);
     printTree(root->right_child);
 }
+
+void store(node *root, FILE *f){
+    if (root == NULL)
+        return;
+    fprintf(f, "%d ", root->data);
+    if (root->left_child == NULL)
+        fprintf(f, "-1 ");
+    else
+        fprintf(f, "%d ", root->left_child->data);
+    if (root->right_child == NULL)
+        fprintf(f, "-1 ");
+    else
+        fprintf(f, "%d ", root->right_child->data);
+    fprintf(f, "\n");
+
+    store(root->left_child, f);
+    store(root->right_child, f);
+}
+
+void storeProcess(node *root){
+    char fname[50];
+
+    printf("%s\n","Enter name of file: ");
+    scanf("%s", fname);
+
+    FILE *f = fopen(fname, "w");
+    store(root, f);
+
+    fprintf(f, "$$");
+    fclose(f);
+}
+
+void read(node *root, FILE *f){
+    
+}
+
+int count(node *root){
+    if (root == NULL)
+        return 0;
+    else
+        return 1 + count(root->left_child) + count(root->right_child);
+}
+
+void printLeave(node *root){
+    if (root == NULL)
+        return;
+    if (root->left_child == NULL && root->right_child == NULL)
+        printf("%d ");
+    printLeave(root->left_child);
+    printLeave(root->right_child);
+}
+
+int main(){
+
+
+}
